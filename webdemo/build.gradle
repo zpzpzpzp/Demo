@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.akhikhl.gretty' version '1.4.2'
+    id "net.saliman.cobertura" version "2.5.0"
+    id "org.sonarqube" version "2.5"
+}
+
+
+sourceCompatibility = 1.8
+
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+test {
+    filter {
+        includeTestsMatching "org.gradle.demo.HelloServletTest"
+    }
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.7.19'
+    testRuntime "org.slf4j:slf4j-log4j12:1.7.5"
+    testCompile 'io.github.bonigarcia:webdrivermanager:1.6.1'
+    testCompile 'org.seleniumhq.selenium:selenium-java:3.3.1'
+
+}
+
+cobertura.coverageFormats = ['html', 'xml']
+
+gretty {
+    httpPort = 8088
+}
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
+    }
+}
+
+
+
+
+
+
