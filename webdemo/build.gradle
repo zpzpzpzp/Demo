@@ -53,7 +53,7 @@ dependencies {
 cobertura.coverageFormats = ['html', 'xml']
 
 gretty {
-    httpPort = 8088
+    httpPort = 8888
 }
 
 sonarqube {
