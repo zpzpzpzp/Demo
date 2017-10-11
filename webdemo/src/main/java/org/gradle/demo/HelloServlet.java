@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 
-@WebServlet(name = "HelloServlet", urlPatterns = {"hellos"}, loadOnStartup = 1)
+@WebServlet(name = "HelloServlet", urlPatterns = {"/hello"}, loadOnStartup = 1)
 public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
