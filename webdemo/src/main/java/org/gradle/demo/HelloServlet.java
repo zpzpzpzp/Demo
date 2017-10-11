@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "HelloServlet", urlPatterns = {"/"}, loadOnStartup = 1)
+
+//loadOnStartup = 1
+@WebServlet(name = "HelloServlet", urlPatterns = {"hello"})
 public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
