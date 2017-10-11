@@ -9,18 +9,15 @@ import java.io.IOException;
 
 
 
-@WebServlet(name = "HelloServlet", urlPatterns = {"hello"}, loadOnStartup = 1)
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "Init", urlPatterns = {"/"}, loadOnStartup = 1)
+public class Init extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().print("Hello, World!");
+        request.getRequestDispatcher("index.html").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        if (name == null) name = "World";
-        request.setAttribute("user", name);
-        request.getRequestDispatcher("response.jsp").forward(request, response);
+
     }
 }
