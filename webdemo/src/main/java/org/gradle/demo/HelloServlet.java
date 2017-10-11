@@ -8,15 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-//
-
-@WebServlet(name = "HelloServlet", urlPatterns = {"/"})
-public class HelloServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("index.html").forward(request, response);
-        };
-    }
 
 @WebServlet(name = "HelloServlet", urlPatterns = {"hello"}, loadOnStartup = 1)
 public class HelloServlet extends HttpServlet {
