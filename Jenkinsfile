@@ -1,6 +1,11 @@
 // Declarative //
 pipeline {
     agent any
+    
+    environment {
+        sonarqubeScannerHome = tool name:'SonarScannerTest'
+
+    }
 
     stages {
 
@@ -19,7 +24,7 @@ pipeline {
             }
         }
 
-        def sonarqubeScannerHome = tool name:'SonarScannerTest'
+        
         
         stage('SonarQube analysis') {
            steps {
