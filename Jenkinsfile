@@ -2,10 +2,10 @@
 pipeline {
     agent any
     
-    environment {
-        sonarqubeScannerHome = tool name:'SonarScannerTest'
+ //   environment {
+   //     sonarqubeScannerHome = tool name:'SonarScannerTest'
 
-    }
+   // }
 
     stages {
 
@@ -29,12 +29,13 @@ pipeline {
         stage('SonarQube analysis') {
            steps {
                echo "starting codeAnalyze with SonarQube......"
-            
+               script{
+               def sonarqubeScannerHome = tool name:'SonarScannerTest'
                withSonarQubeEnv('SonarSeverTest') {
                  //固定使用项目根目录${basedir}下的pom.xml进行代码检查
                    sh "${sonarqubeScannerHome}/bin/sonar-scanner"
                }
-               script {
+            
                timeout(10) { 
                    //利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
                    def qg = waitForQualityGate() 
