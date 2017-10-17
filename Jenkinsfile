@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'make'
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                sh 'cd webdemo && ./gradlew build'
             }
         }
         stage('Test') {
@@ -15,7 +14,7 @@ pipeline {
                 /* `make check` returns non-zero on test failures,
                  *  using `true` to allow the Pipeline to continue nonetheless
                  */
-                sh 'make check || true' ①
+                sh 'cd webdemo && ./gradlew build || true' ①
                 junit '**/target/*.xml' ②
             }
         }
