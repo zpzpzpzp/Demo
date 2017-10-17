@@ -1,13 +1,16 @@
 // Declarative //
 pipeline {
     agent any
+
     stages {
+
         stage('Build') {
             steps {
                 echo 'Building..'
                 sh 'cd webdemo && ./gradlew build'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
@@ -19,7 +22,7 @@ pipeline {
         stage('SonarQube analysis') {
            steps {
                echo "starting codeAnalyze with SonarQube......"
-               def sonarqubeScannerHome = tool name : 'SonarScannerTest'
+               def sonarqubeScannerHome = tool : 'SonarScannerTest'
                withSonarQubeEnv('SonarSeverTest') {
                  //固定使用项目根目录${basedir}下的pom.xml进行代码检查
                    sh "${sonarqubeScannerHome}/bin/sonar-scanner"
