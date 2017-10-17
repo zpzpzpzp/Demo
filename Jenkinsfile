@@ -36,7 +36,7 @@ pipeline {
                    sh "${sonarqubeScannerHome}/bin/sonar-scanner"
                }
             
-               timeout(1) { 
+               timeout(4) { 
                    //利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
                    def qg = waitForQualityGate() 
                        if (qg.status != 'OK') {
