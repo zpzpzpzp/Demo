@@ -16,13 +16,13 @@ pipeline {
             }
         }
         
-        stage('SonarQube') {
+        stage('SonarQube analysis') {
            steps {
                echo "starting codeAnalyze with SonarQube......"
-               //sonar:sonar.QualityGate should pass
-               withSonarQubeEnv('SonarQube') {
+               def sonarqubeScannerHome = tool name : 'SonarScannerTest'
+               withSonarQubeEnv('SonarSeverTest') {
                  //固定使用项目根目录${basedir}下的pom.xml进行代码检查
-                 sh "mvn -f pom.xml clean compile sonar:sonar"
+                   sh "${sonarqubeScannerHome}/bin/sonar-scanner"
                }
                script {
                timeout(10) { 
