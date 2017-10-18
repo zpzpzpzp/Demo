@@ -3,13 +3,8 @@
 tomcat_path = /Users/hbao/Downloads/apache-tomcat-7.0.82
 TomcatID = $(ps -ef |grep tomcat |grep -w $tomcat_path|grep -v 'grep'|awk '{print $2}')
 
-if[-n $TomcatID]；
-   then
-      echo "$TomcatID tomcat is starting, need to stop"
-      cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
-      ./shutdown.sh
-   else
-      echo "tomcat not start ..."
+cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
+./shutdown.sh
 
 rm -rf /Users/hbao/Downloads/apache-tomcat-7.0.82/webapps/webdemo
 rm -f /Users/hbao/Downloads/apache-tomcat-7.0.82/webapps/webdemo.war
