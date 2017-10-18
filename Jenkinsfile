@@ -43,12 +43,12 @@ pipeline {
        }
         
         stage('Deploy') {
-            when {
-                expression {
+          //  when {
+             //   expression {
                     /*如果测试失败，状态为UNSTABLE*/
-                    currentBuild.result == 'SUCCESS'
-               }
-            }
+               //     currentBuild.result == 'SUCCESS'
+            //   }
+         //   }
             steps {
                 echo 'Deploying..'
                 sh"""
