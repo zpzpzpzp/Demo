@@ -55,7 +55,7 @@ pipeline {
                 //sh 'ssh -tt hbao@10.209.21.215 < deploy.sh'
                 
                 sh """
-                set -e
+                
 ssh hbao@10.209.21.215 '
          
 tomcat_path=/Users/hbao/Downloads/apache-tomcat-7.0.82
