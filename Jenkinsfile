@@ -63,7 +63,7 @@ TomcatID=$(ps -ef |grep tomcat |grep -w $tomcat_path|grep -v 'grep'|awk '{print 
      
 StopTomcat=/Users/hbao/Downloads/apache-tomcat-7.0.82/bin/shutdown.sh
 
-if[($TomcatID)];then
+if[ $TomcatID ];then
    echo "当前Tomcat进程ID为：$TomcatID, 需要关闭..."
    $StopTomcat
 else
