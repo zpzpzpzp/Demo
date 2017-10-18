@@ -52,7 +52,7 @@ pipeline {
             steps {
                 echo 'Deploying..'
          
-                sh 'ssh hbao@10.209.21.215 < deploy.sh'
+                sh 'ssh -tt hbao@10.209.21.215 < deploy.sh'
             }
         }
         
