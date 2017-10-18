@@ -1,11 +1,6 @@
 // Declarative //
 pipeline {
     agent any
-    
- //   environment {
-   //     sonarqubeScannerHome = tool name:'SonarScannerTest'
-
-   // }
 
     stages {
 
@@ -47,18 +42,26 @@ pipeline {
            }
        }
         
-       // stage('Deploy') {
-         //   when {
-           //     expression {
+        stage('Deploy') {
+            when {
+                expression {
                     /*如果测试失败，状态为UNSTABLE*/
-             //       currentBuild.result == null || currentBuild.result == 'SUCCESS'
-               // }
-            //}
-            //steps {
-              //  echo 'Deploying..'
-                //sh 'make publish'
-            //}
-        //}
+                    currentBuild.result == 'SUCCESS'
+               }
+            }
+            steps {
+                echo 'Deploying..'
+                script{
+                    ssh hbao@10.209.21.215
+                    cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
+                    scp webdemo.war hbao@10.209.21.215:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
+                    cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
+                    ./shutdown.sh
+                    ./startup.sh
+                }
+                
+            }
+        }
         
     }
 }
