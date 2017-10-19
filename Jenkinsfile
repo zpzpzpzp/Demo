@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'cd webdemo && ./gradlew build'
+                sh 'cd webdemo && ./gradlew build -x test'
             }
 
         }
@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'cd webdemo && ./gradlew build'
+                sh 'cd webdemo && ./gradlew test'
 
             }
         }
