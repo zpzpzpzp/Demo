@@ -90,19 +90,6 @@ pipeline {
             }
         }
 
-            stage('UI Automation Test'){
-                 steps{
-                    echo '开始UI自动化测试.....'
-
-
-
-
-                 }
-            }
-
-
-
-
             }
         }
 
