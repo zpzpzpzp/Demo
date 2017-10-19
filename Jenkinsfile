@@ -9,13 +9,22 @@ pipeline {
                 echo 'Building..'
                 sh 'cd webdemo && ./gradlew build'
             }
+
+            post{
+               failure {
+                   echo 'build failed .....'
+               }
+               success {
+                    echo 'build successfully....'
+               }
+            }
         }
 
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'cd webdemo && ./gradlew build || true'
-              //  junit '**/target/*.xml'
+                sh 'cd webdemo && ./gradlew build'
+
             }
         }
 
@@ -27,7 +36,6 @@ pipeline {
                script{
                def sonarqubeScannerHome = tool name:'SonarScannerTest'
                withSonarQubeEnv('SonarSeverTest') {
-                 //固定使用项目根目录${basedir}下的pom.xml进行代码检查
                    sh "${sonarqubeScannerHome}/bin/sonar-scanner"
                }
             
@@ -40,6 +48,17 @@ pipeline {
                    }
                }
            }
+
+           post{
+               failure {
+                   echo '代码为能通过Sonarqube 质量检测 .....'
+               }
+               success {
+                    echo ' SonarQube scanner successfully....'
+               }
+
+           }
+
        }
         
         stage('Deploy') {
@@ -56,20 +75,37 @@ pipeline {
                 
                 sh """
                 set -e
-ssh hbao@10.209.21.215 'bash -s' < checktomcatstatus.sh
+                ssh hbao@10.209.21.215 'bash -s' < checktomcatstatus.sh
 
                 
-cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
+                cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
                 
-scp webdemo.war hbao@10.209.21.215:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
-ssh hbao@10.209.21.215 '
-cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
-./startup.sh
-'
+                scp webdemo.war hbao@10.209.21.215:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
+                ssh hbao@10.209.21.215 '
+                cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
+                ./startup.sh
+                '
                 """
                 
             }
         }
+
+            stage('UI Automation Test'){
+                 steps{
+                    echo '开始UI自动化测试.....'
+
+
+
+
+                 }
+            }
+
+
+
+
+            }
+        }
+
         
     }
 }
