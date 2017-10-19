@@ -10,14 +10,6 @@ pipeline {
                 sh 'cd webdemo && ./gradlew build'
             }
 
-            post{
-               failure {
-                   echo 'build failed .....'
-               }
-               success {
-                    echo 'build successfully....'
-               }
-            }
         }
 
         stage('Test') {
@@ -49,15 +41,6 @@ pipeline {
                }
            }
 
-           post{
-               failure {
-                   echo '代码为能通过Sonarqube 质量检测 .....'
-               }
-               success {
-                    echo ' SonarQube scanner successfully....'
-               }
-
-           }
 
        }
         

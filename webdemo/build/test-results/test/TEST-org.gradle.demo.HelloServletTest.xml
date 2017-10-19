@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.gradle.demo.HelloServletTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2017-10-19T06:27:57" hostname="CNhbao.local" time="1.053">
+<testsuite name="org.gradle.demo.HelloServletTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2017-10-19T10:27:26" hostname="CNhbao.local" time="1.044">
   <properties/>
-  <testcase name="doPostWithoutName" classname="org.gradle.demo.HelloServletTest" time="1.024"/>
-  <testcase name="doPostWithName" classname="org.gradle.demo.HelloServletTest" time="0.029">
+  <testcase name="doPostWithoutName" classname="org.gradle.demo.HelloServletTest" time="1.019"/>
+  <testcase name="doPostWithName" classname="org.gradle.demo.HelloServletTest" time="0.025">
     <failure message="Argument(s) are different! Wanted:&#10;request.setAttribute(&quot;user&quot;, &quot;Dolly&quot;);&#10;-&gt; at org.gradle.demo.HelloServletTest.doPostWithName(HelloServletTest.java:58)&#10;Actual invocation has different arguments:&#10;request.setAttribute(&quot;user&quot;, &quot;World&quot;);&#10;-&gt; at org.gradle.demo.HelloServlet.doPost(HelloServlet.java:23)&#10;" type="org.mockito.exceptions.verification.junit.ArgumentsAreDifferent">Argument(s) are different! Wanted:
 request.setAttribute(&quot;user&quot;, &quot;Dolly&quot;);
 -&gt; at org.gradle.demo.HelloServletTest.doPostWithName(HelloServletTest.java:58)
