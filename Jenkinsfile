@@ -42,10 +42,10 @@ pipeline {
                 echo 'Deploying..' 
                 sh """
                     set -e
-                    ssh hbao@10.209.21.215 'bash -s' < checktomcatstatus.sh
+                    ssh hbao@10.209.22.46 'bash -s' < checktomcatstatus.sh
                     cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
-                    scp webdemo.war hbao@10.209.21.215:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
-                    ssh hbao@10.209.21.215 '
+                    scp webdemo.war hbao@10.209.22.46:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
+                    ssh hbao@10.209.22.46 '
                         cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
                         ./startup.sh
                     '
