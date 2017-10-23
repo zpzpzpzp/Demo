@@ -1,6 +1,8 @@
 // script Pipeline //
 node {
     
+    git url: 'https://github.com/Mokaffe/DemoTestForBuild.git'
+    
        stage('Build') {
            try{
                sh 'cd webdemo && ./gradlew build -x test'
