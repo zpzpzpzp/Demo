@@ -25,7 +25,7 @@ pipeline {
                          sh 'cd webdemo && ./gradlew test' 
                     }
                     catch(exc){
-                        ech0 "test failed"
+                        echo "test failed"
                     }
                 }
             }
