@@ -57,14 +57,15 @@ pipeline {
                 """ 
             }
         }
-        
-        
-         post{
+    }
+    
+    post{
                 failure{
                     echo "something failed...."
                 }
             }
-    }
+    
+    
 }
 
 
