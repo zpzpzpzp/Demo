@@ -20,12 +20,10 @@ pipeline {
         stage('Test') {
             steps{
                 script{
-                    try{
-                        echo 'Testing..'
-                         sh 'cd webdemo && ./gradlew test' 
-                    }
-                    catch(exc){
-                        echo "test failed"
+                    echo 'Testing..'
+                    sh 'cd webdemo && ./gradlew test'
+                    if(currentBuild.result == 'FAILED'){
+                        error("stopping early")
                     }
                 }
             }
