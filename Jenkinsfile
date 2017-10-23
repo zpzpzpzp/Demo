@@ -8,7 +8,6 @@ pipeline {
                 echo 'Building..'
                 sh 'cd webdemo && ./gradlew build -x test'
             }
-            error("Build failed becasue of ...")
         }
 
         stage('Test') {
@@ -17,10 +16,15 @@ pipeline {
    //                 currentBuild.result = 'SUCCESS'
      //           }
        //     }
-            steps {
+            if(currentBuild.result == 'SUCCESS'){
+                steps {
                 echo 'Testing..'
                 sh 'cd webdemo && ./gradlew test'
+               }
+            }else{
+                return
             }
+            
         }
 
         stage('SonarQube analysis') {
