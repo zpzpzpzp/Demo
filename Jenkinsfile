@@ -60,6 +60,10 @@ node {
                 throw e
             }
         }
+    
+    def notifyStarted(String message) {
+      slackSend (color: '#FFFF00', message: "${message}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
         
 }
 
