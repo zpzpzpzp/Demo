@@ -19,8 +19,15 @@ pipeline {
 
         stage('Test') {
             steps{
-                echo 'Testing..'
-                sh 'cd webdemo && ./gradlew test'
+                script{
+                    try{
+                        echo 'Testing..'
+                         sh 'cd webdemo && ./gradlew test' 
+                    }
+                    catch(exc){
+                        ech0 "test failed"
+                    }
+                }
             }
         }
 
