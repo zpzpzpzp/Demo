@@ -12,13 +12,13 @@ pipeline {
             }
         }
 
-        script{
+       
                 if(currentBuild.result== null){
                         echo '============ssssssss================'
                         currentBuild.result = 'ABORTED'
                         error("stopping early")
                     }
-            }
+            
         
         
         stage('Test') {
