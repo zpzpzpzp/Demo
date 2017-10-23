@@ -7,12 +7,7 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    try{
-                     sh 'cd webdemo && ./gradlew test'
-                  }
-                  catch(exc){
-                       echo "something failed"
-                  }
+                     sh 'cd webdemo && ./gradlew build'
                 }
             }
         }
