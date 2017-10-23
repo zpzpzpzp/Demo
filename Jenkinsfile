@@ -7,18 +7,13 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                     echo "current build result : ${currentBuild.result}"
                     try{
                         sh 'cd webdemo && ./gradlew build'
                         currentBuild.result = 'SUCCESS'
                     }
                     catch(exc){
-                        echo "c------ build result : ${currentBuild.result}"
                         echo '[FAILURE] Failed to build'
                         currentBuild.result = 'FAILURE'
-                        echo "c------ buiddddld result : ${currentBuild.result}"
-                        return
-                        
                     }
                 }
             }
@@ -27,10 +22,14 @@ pipeline {
         
         
         stage('Test') {
+            echo "c------ buiddddld result : ${currentBuild.result}"
+            when{
+                 expression{
+                      currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                 }
+            }
             steps{
                 script{
-                    echo "c------ buiddddld result : ${currentBuild.result}"
- 
                     echo '+++++++++++++++++++++++++'
                     echo 'Testing..'
                     sh 'cd webdemo && ./gradlew test'
