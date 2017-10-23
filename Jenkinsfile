@@ -22,11 +22,14 @@ pipeline {
                 script{
                     echo 'Testing..'
                     sh 'cd webdemo && ./gradlew test'
-                    if[ !continueBuild ]; then
+                    
+                    if(!continueBuild){
                         echo '============================'
                         currentBuild.result = 'ABORTED'
                         error("stopping early")
-                    fi
+                    }
+                    
+                    echo currentBuild.result  
                 }
             }
         }
