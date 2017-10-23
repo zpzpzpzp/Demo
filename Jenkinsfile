@@ -8,6 +8,7 @@ pipeline {
                 echo 'Building..'
                 sh 'cd webdemo && ./gradlew build -x test'
             }
+            error("Build failed becasue of ...")
         }
 
         stage('Test') {
