@@ -4,27 +4,19 @@ pipeline {
     
     stages {
         stage('Build') {
-            steps {
-                echo 'Building..'
+            try{
                 sh 'cd webdemo && ./gradlew build -x test'
+            }finally{
+                echo ‘【FAILURE】failed to build’
             }
+    
         }
 
         stage('Test') {
- //           when{
- //               expression{
-   //                 currentBuild.result = 'SUCCESS'
-     //           }
-       //     }
-            if(currentBuild.result == 'SUCCESS'){
-                steps {
+             steps {
                 echo 'Testing..'
                 sh 'cd webdemo && ./gradlew test'
-               }
-            }else{
-                return
-            }
-            
+             }
         }
 
         stage('SonarQube analysis') {
