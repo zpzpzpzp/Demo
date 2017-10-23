@@ -56,7 +56,6 @@ node {
                     '
                 """
             }catch(e){
-                echo "dsds"
                 notifyStarted("SonarQube Failed in Jenkins!")
                 throw e
             }
@@ -67,7 +66,7 @@ node {
 }
 
  def notifyStarted(String message) {
-     sh 'echo'+ ${message}
+     sh 'echo ${message}'
     }
         
 
