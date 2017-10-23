@@ -8,15 +8,17 @@ pipeline {
             steps{
                 script{
                      echo "current build result : ${currentBuild.result}"
-                     sh 'cd webdemo && ./gradlew build'
-                     
-                     if(!continueBuild){
-                        echo '============ssssssss================'
-                        currentBuild.result = 'ABORTED'
-                        error("stopping early")
-                     }else{
-                         echo "为什么没有生效"
-                     }
+                    try{
+                        sh 'cd webdemo && ./gradlew build'
+                        currentBuild.result = 'SUCCESS'
+                    }
+                    catch(exc){
+                        echo "c------ build result : ${currentBuild.result}"
+                        echo '[FAILURE] Failed to build'
+                        currentBuild.result = 'FAILURE'
+                        echo "c------ buiddddld result : ${currentBuild.result}"
+                        
+                    }
                 }
             }
         }
@@ -26,16 +28,12 @@ pipeline {
         stage('Test') {
             steps{
                 script{
+                    echo "c------ buiddddld result : ${currentBuild.result}"
+ 
+                    echo '+++++++++++++++++++++++++'
                     echo 'Testing..'
                     sh 'cd webdemo && ./gradlew test'
-                    
-                    if(currentBuild.result== null){
-                        echo '============================'
-                        currentBuild.result = 'ABORTED'
-                        error("stopping early")
-                    }
-                    
-                    echo '+++++++++++++++++++++++++'
+                   
                 }
             }
         }
