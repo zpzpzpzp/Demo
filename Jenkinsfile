@@ -1,39 +1,21 @@
-//  Pipeline //
-pipeline {
-    agent any
+// script Pipeline //
+node {
     
-    stages {
-
-        stage('Build') {
-            steps{
-                script{
-                    try{
-                        sh 'cd webdemo && ./gradlew build'
-                        currentBuild.result = 'SUCCESS'
-                    }
-                    catch(exc){
-                        echo '[FAILURE] Failed to build'
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
-            }
+       stage('Build') {
+           try{
+               sh 'cd webdemo && ./gradlew build'
+           }catch(exc){
+               notifyStarted("Build Failed in Jenkins!")
+               throw e
+           }       
         }
 
-        
-        
         stage('Test') {
-            when{
-                 expression{
-                      currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                 }
-            }
-            steps{
-                script{
-                    echo '+++++++++++++++++++++++++'
-                    echo 'Testing..'
-                    sh 'cd webdemo && ./gradlew test'
-                   
-                }
+            try{
+                sh 'cd webdemo && ./gradlew test'
+            }catch(exc){
+                notifyStarted("Build Failed in Jenkins!")
+                throw e
             }
         }
 
@@ -73,7 +55,6 @@ pipeline {
             }
         }
         
-    }
 }
 
 
