@@ -17,6 +17,7 @@ pipeline {
                         echo '[FAILURE] Failed to build'
                         currentBuild.result = 'FAILURE'
                         echo "c------ buiddddld result : ${currentBuild.result}"
+                        return
                         
                     }
                 }
