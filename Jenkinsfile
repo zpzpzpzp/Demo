@@ -12,14 +12,14 @@ node {
         }
 
         stage('Test') {
-             steps {
+             
                 echo 'Testing..'
                 sh 'cd webdemo && ./gradlew test'
-             }
+             
         }
 
         stage('SonarQube analysis') {
-            steps {
+            
                 echo "starting codeAnalyze with SonarQube......"
                 script{
                     def sonarqubeScannerHome = tool name:'SonarScannerTest'
@@ -35,11 +35,11 @@ node {
                        }
                     }
                 }
-            }
+            
         }
         
         stage('Deploy') {
-            steps {
+            
                 echo 'Deploying..' 
                 sh """
                     set -e
@@ -51,7 +51,7 @@ node {
                         ./startup.sh
                     '
                 """ 
-            }
+            
         }
 
 }
