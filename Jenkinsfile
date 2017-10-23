@@ -58,14 +58,6 @@ pipeline {
             }
         }
     }
-    
-    post{
-                failure{
-                    echo "something failed...."
-                }
-            }
-    
-    
 }
 
 
