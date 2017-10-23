@@ -56,6 +56,7 @@ node {
                     '
                 """
             }catch(e){
+                echo "dsds"
                 notifyStarted("SonarQube Failed in Jenkins!")
                 throw e
             }
@@ -66,7 +67,7 @@ node {
 }
 
  def notifyStarted(String message) {
-      slackSend (color: '#FFFF00', message: "${message}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+     sh 'echo'+ ${message}
     }
         
 
