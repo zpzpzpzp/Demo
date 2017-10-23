@@ -11,11 +11,11 @@ pipeline {
         }
 
         stage('Test') {
-            when{
-                expression{
-                    currentBuild.result = 'SUCCESS'
-                }
-            }
+ //           when{
+ //               expression{
+   //                 currentBuild.result = 'SUCCESS'
+     //           }
+       //     }
             steps {
                 echo 'Testing..'
                 sh 'cd webdemo && ./gradlew test'
@@ -57,6 +57,13 @@ pipeline {
                 """ 
             }
         }
+        
+        
+         post{
+                failure{
+                    echo "something failed...."
+                }
+            }
     }
 }
 
