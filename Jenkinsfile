@@ -7,7 +7,7 @@ pipeline {
             try{
                 sh 'cd webdemo && ./gradlew build -x test'
             }finally{
-                echo ‘【FAILURE】failed to build’
+                echo  'failed build....'
             }
     
         }
