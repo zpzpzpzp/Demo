@@ -1,15 +1,15 @@
-// Declarative //
-pipeline {
-    agent any
+// Scripted Pipeline //
+node {
     
-    stages {
+
         stage('Build') {
             try{
                 sh 'cd webdemo && ./gradlew build -x test'
-            }finally{
-                echo  'failed build....'
             }
-    
+            catch(exc){
+                echo "something failed"
+                throw
+            }
         }
 
         stage('Test') {
@@ -53,8 +53,7 @@ pipeline {
                     '
                 """ 
             }
-        }
-    }
+
 }
 
 
