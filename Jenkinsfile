@@ -23,6 +23,7 @@ pipeline {
                     echo 'Testing..'
                     sh 'cd webdemo && ./gradlew test'
                     if(!continueBuild){
+                        echo '============================'
                         currentBuild.result = 'ABORTED'
                         error("stopping early")
                     }
