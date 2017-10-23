@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    echo "CONTINUEBUILD : ${continueBuild}"
+        
                      sh 'cd webdemo && ./gradlew build'
                      echo "current build result : ${currentBuild.result}"
                      if(!continueBuild){
