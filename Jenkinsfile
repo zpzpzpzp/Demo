@@ -3,7 +3,7 @@ node {
     
        stage('Build') {
            try{
-               sh 'cd webdemo && ./gradlew build'
+               sh 'cd webdemo && ./gradlew build -x test'
            }catch(e){
                notifyStarted("Build Failed in Jenkins!")
                throw e
