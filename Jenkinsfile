@@ -10,16 +10,17 @@ pipeline {
                      sh 'cd webdemo && ./gradlew build'
                 }
             }
-            script{
+        }
+
+        script{
                 if(currentBuild.result== null){
-                        echo '============================'
+                        echo '============ssssssss================'
                         currentBuild.result = 'ABORTED'
                         error("stopping early")
                     }
             }
-            
-        }
-
+        
+        
         stage('Test') {
             steps{
                 script{
