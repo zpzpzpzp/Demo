@@ -29,7 +29,7 @@ pipeline {
                         error("stopping early")
                     }
                     
-                    echo currentBuild.result  
+                    echo '+++++++++++++++++++++++++'
                 }
             }
         }
