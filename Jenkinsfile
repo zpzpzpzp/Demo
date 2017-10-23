@@ -8,7 +8,6 @@ node {
             }
             catch(exc){
                 echo "something failed"
-                throw
             }
         }
 
