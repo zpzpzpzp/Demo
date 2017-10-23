@@ -22,7 +22,6 @@ pipeline {
         
         
         stage('Test') {
-            echo "c------ buiddddld result : ${currentBuild.result}"
             when{
                  expression{
                       currentBuild.result == null || currentBuild.result == 'SUCCESS'
