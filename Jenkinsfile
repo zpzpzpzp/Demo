@@ -1,25 +1,31 @@
-// Scripted Pipeline //
-node {
+//  Pipeline //
+Pipeline {
+    agent any
     
+    stages {
 
         stage('Build') {
-            try{
-                sh 'cd webdemo && ./gradlew build -x test'
-            }
-            catch(exc){
-                echo "something failed"
+            steps{
+                script{
+                    try{
+                     sh 'cd webdemo && ./gradlew build -x test'
+                  }
+                  catch(exc){
+                       echo "something failed"
+                  }
+                }
             }
         }
 
         stage('Test') {
-             
+            steps{
                 echo 'Testing..'
                 sh 'cd webdemo && ./gradlew test'
-             
+            }
         }
 
         stage('SonarQube analysis') {
-            
+            steps{
                 echo "starting codeAnalyze with SonarQube......"
                 script{
                     def sonarqubeScannerHome = tool name:'SonarScannerTest'
@@ -34,13 +40,13 @@ node {
                            error "It doesn't pass Sonarqube scanner gate setting，Please fix it！failure: ${qg.status}"
                        }
                     }
-                }
-            
+                } 
+            }
         }
         
         stage('Deploy') {
-            
-                echo 'Deploying..' 
+            steps{
+                 echo 'Deploying..' 
                 sh """
                     set -e
                     ssh hbao@10.209.22.46 'bash -s' < checktomcatstatus.sh
@@ -51,9 +57,10 @@ node {
                         ./startup.sh
                     '
                 """ 
-            
+            }
         }
-
+        
+    }
 }
 
 
