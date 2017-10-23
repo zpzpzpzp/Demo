@@ -7,9 +7,9 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-        
-                     sh 'cd webdemo && ./gradlew build'
                      echo "current build result : ${currentBuild.result}"
+                     sh 'cd webdemo && ./gradlew build'
+                     
                      if(!continueBuild){
                         echo '============ssssssss================'
                         currentBuild.result = 'ABORTED'
