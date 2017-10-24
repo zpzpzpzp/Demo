@@ -58,7 +58,7 @@ task integTest(type: Test) {
     }
 }
 
-check.dependsOn integTest
+//check.dependsOn integTest
 
 
 repositories {
