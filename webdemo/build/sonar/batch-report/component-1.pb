@@ -1,1 +1,0 @@
--Example of SonarQube Scanner for Gradle Usage :JunspecifiedRwebdemo

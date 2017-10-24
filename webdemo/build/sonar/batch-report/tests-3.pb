@@ -1,4 +1,0 @@
-
-doPostWithoutNameŠ
-doGet
-doPostWithName

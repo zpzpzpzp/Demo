@@ -1,6 +1,0 @@
-projectKey=webdemo
-serverUrl=http://localhost:9000
-serverVersion=6.5.0.27846
-dashboardUrl=http://localhost:9000/dashboard/index/webdemo
-ceTaskId=AV6Uy_yFnTX4dX6qbgoF
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AV6Uy_yFnTX4dX6qbgoF

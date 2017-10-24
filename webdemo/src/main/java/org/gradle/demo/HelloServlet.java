@@ -22,6 +22,5 @@ public class HelloServlet extends HttpServlet {
         if (name == null) name = "World";
         request.setAttribute("user", name);
         request.getRequestDispatcher("response.jsp").forward(request, response);
-        
     }
 }

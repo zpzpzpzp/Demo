@@ -6,6 +6,12 @@ plugins {
     id "org.sonarqube" version "2.5"
 }
 
+sourceSets {
+    integTest {
+        java.srcDir file('src/integTest/java')
+        resources.srcDir file('src/integTest/resources')
+    }
+}
 
 sourceCompatibility = 1.8
 
@@ -35,9 +41,28 @@ test {
 }
 
 
+task integTest(type: Test) {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = 'Runs the integration tests.'
+
+    maxHeapSize = '1024m'
+
+    testClassesDir = sourceSets.integTest.output.classesDir
+    classpath = sourceSets.integTest.runtimeClasspath
+
+    binResultsDir = file("$buildDir/integration-test-results/binary/integTest")
+
+    reports {
+        html.destination = "$buildDir/reports/integration-test"
+        junitXml.destination = "$buildDir/integration-test-results"
+    }
+}
+
+check.dependsOn integTest
+
 
 repositories {
-    jcenter()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
 
 dependencies {
@@ -47,6 +72,16 @@ dependencies {
     testRuntime "org.slf4j:slf4j-log4j12:1.7.5"
     testCompile 'io.github.bonigarcia:webdrivermanager:1.6.1'
     testCompile 'org.seleniumhq.selenium:selenium-java:3.3.1'
+
+
+    integTestCompile sourceSets.main.output
+    integTestCompile sourceSets.test.output
+
+    integTestCompile configurations.compile
+    integTestCompile configurations.testCompile
+
+    integTestRuntime configurations.runtime
+    integTestRuntime configurations.testRuntime
 
 }
 
