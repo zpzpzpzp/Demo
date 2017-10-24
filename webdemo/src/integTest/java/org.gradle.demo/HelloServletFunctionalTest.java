@@ -33,11 +33,15 @@ public class HelloServletFunctionalTest {
     @Test
     public void sayHello() throws Exception {
         driver.get("http://10.209.22.168:8081/webdemo/");
+        Thread.sleep(2000);
 
         driver.findElement(By.id("say-hello-text-input")).sendKeys("Dolly");
+        Thread.sleep(2000);
         driver.findElement(By.id("say-hello-button")).click();
+        Thread.sleep(2000);
 
         assertEquals("Hello Page", driver.getTitle());
         assertEquals("Hello, Dolly!", driver.findElement(By.tagName("h2")).getText());
+        Thread.sleep(2000);
     }
 }
