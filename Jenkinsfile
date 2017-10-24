@@ -61,6 +61,15 @@ node {
             }
         }
     
+    stage('Run integrate test'){
+        try{
+            sh 'cd webdemo && ./gradlew integTest'
+        }catch(e){
+            echo "failed"
+            throw e
+        }
+    }
+    
     
         notifyStarted("All is well! Your code is tested,built,and deployed.")
 }
