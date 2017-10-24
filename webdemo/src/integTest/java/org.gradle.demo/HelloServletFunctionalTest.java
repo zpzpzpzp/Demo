@@ -32,7 +32,7 @@ public class HelloServletFunctionalTest {
 
     @Test
     public void sayHello() throws Exception {
-        driver.get("http://120.77.81.180:8080/webdemo/");
+        driver.get("http://10.209.22.168:8081/webdemo/");
 
         driver.findElement(By.id("say-hello-text-input")).sendKeys("Dolly");
         driver.findElement(By.id("say-hello-button")).click();
