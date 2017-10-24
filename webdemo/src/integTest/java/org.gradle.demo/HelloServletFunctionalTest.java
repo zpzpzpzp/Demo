@@ -16,8 +16,8 @@ public class HelloServletFunctionalTest {
 
     @BeforeClass
     public static void setupClass() {
-        System.setProperty("webdriver.chrome.driver", "/var/jenkins_home/plugins/chromedriver");
-        ChromeDriverManager.getInstance().setup();
+        System.setProperty("webdriver.chrome.driver","$WORKSPACE/webdemo/chromedriver");
+       // ChromeDriverManager.getInstance().setup();
         
     }
 
