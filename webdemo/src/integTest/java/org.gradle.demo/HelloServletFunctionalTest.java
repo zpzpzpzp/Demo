@@ -6,26 +6,31 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static org.junit.Assert.assertEquals;
 
 public class HelloServletFunctionalTest {
     private WebDriver driver;
+    private  Capabilities chromeCapabilities = DesiredCapabilities.chrome();
 
     @BeforeClass
     public static void setupClass() {
         //System.setProperty("webdriver.chrome.driver","/var/jenkins_home/tools/chromedriver/chromedriver");
        // ChromeDriverManager.getInstance().setup();
-        Capabilities chromeCapabilities = DesiredCapabilities.chrome();
+
         
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
     }
 
