@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,14 +18,15 @@ public class HelloServletFunctionalTest {
 
     @BeforeClass
     public static void setupClass() {
-        System.setProperty("webdriver.chrome.driver","/var/jenkins_home/tools/chromedriver/chromedriver");
+        //System.setProperty("webdriver.chrome.driver","/var/jenkins_home/tools/chromedriver/chromedriver");
        // ChromeDriverManager.getInstance().setup();
+        Capabilities chromeCapabilities = DesiredCapabilities.chrome();
         
     }
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
     }
 
     @After
