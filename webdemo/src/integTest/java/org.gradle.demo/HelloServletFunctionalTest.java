@@ -42,7 +42,7 @@ public class HelloServletFunctionalTest {
 
     @Test
     public void sayHello() throws Exception {
-        driver.get("http://10.209.22.168:8081/webdemo/");
+        driver.get("http://10.209.22.168:8085/webdemo/");
         Thread.sleep(2000);
 
         driver.findElement(By.id("say-hello-text-input")).sendKeys("Dolly");
