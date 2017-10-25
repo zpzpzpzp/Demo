@@ -31,7 +31,7 @@ public class HelloServletFunctionalTest {
 
     @Before
     public void setUp() throws MalformedURLException {
-        driver = new RemoteWebDriver(new URL("http://10.209.22.168:4444/wd/hub"), chromeCapabilities);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
     }
 
     @After
