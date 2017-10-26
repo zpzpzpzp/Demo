@@ -9,7 +9,7 @@ node {
            try{
                sh 'cd webdemo && ./gradlew build -x test'
            }catch(e){
-               notifyStarted("Build Failed in Jenkins!")
+               echo("Build Failed in Jenkins!")
                throw e
            }       
         }
@@ -18,16 +18,8 @@ node {
             try{
                 sh 'cd webdemo && ./gradlew test'
             }catch(e){
-                notifyStarted("Test Failed in Jenkins!")
+                echo("Test Failed in Jenkins!")
                 throw e
             }
         }
 }
-
- def notifyStarted(String message) {
-     sh 'echo ${message}'
-    }
-        
-
-
-
