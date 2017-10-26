@@ -22,56 +22,6 @@ node {
                 throw e
             }
         }
-
-        stage('SonarQube analysis') {
-            try{
-                def sonarqubeScannerHome = tool name:'SonarScannerTest'
-                    withSonarQubeEnv('SonarSeverTest') {
-                        sh "${sonarqubeScannerHome}/bin/sonar-scanner"
-                    }
-                
-                timeout(4) { 
-                   //利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
-                   def qg = waitForQualityGate() 
-                       if (qg.status != 'OK') {
-                           error "It doesn't pass Sonarqube scanner gate setting，Please fix it！failure: ${qg.status}"
-                       }
-                    }
-            }catch(e){
-                notifyStarted("SonarQube Failed in Jenkins!")
-                throw e
-            }
-        }
-        
-        stage('Deploy') {
-            try{
-                sh """
-                    set -e
-                    ssh hbao@10.209.22.168 'bash -s' < checktomcatstatus.sh
-                    cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
-                    scp webdemo.war hbao@10.209.22.168:/Users/hbao/Downloads/apache-tomcat-7.0.82/webapps
-                    ssh hbao@10.209.22.168 '
-                        cd /Users/hbao/Downloads/apache-tomcat-7.0.82/bin
-                        ./startup.sh
-                    '
-                """
-            }catch(e){
-                notifyStarted("SonarQube Failed in Jenkins!")
-                throw e
-            }
-        }
-    
-    stage('Run integrate test'){
-        try{
-            sh 'cd webdemo && ./gradlew integTest'
-        }catch(e){
-            echo "failed"
-            throw e
-        }
-    }
-    
-    
-        notifyStarted("All is well! Your code is tested,built,and deployed.")
 }
 
  def notifyStarted(String message) {
