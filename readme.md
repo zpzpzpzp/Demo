@@ -1,5 +1,4 @@
-this is for test
+This is for QA workshop
 
-why can't get new commit??
-
-
+1.Fork the repository
+2.Generate a Personal Token
