@@ -31,7 +31,7 @@ public class HelloServletFunctionalTest {
 
     @Before
     public void setUp() throws MalformedURLException {
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
+        driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), chromeCapabilities);
     }
 
     @After
@@ -42,7 +42,7 @@ public class HelloServletFunctionalTest {
 
     @Test
     public void sayHello() throws Exception {
-        driver.get("http://10.209.22.168:8085/webdemo/");
+        driver.get("http://192.168.99.100:8899/webdemo/");
         Thread.sleep(2000);
 
         driver.findElement(By.id("say-hello-text-input")).sendKeys("Dolly");
