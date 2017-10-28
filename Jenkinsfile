@@ -46,10 +46,10 @@ node {
             try{
                 sh """
                     set -e
-                    ssh tomcat@172.17.0.4 'bash -s' < checktomcatstatus.sh
-                    cd /var/jenkins_home/workspace/docPipeline/webdemo/build/libs
-                    scp webdemo.war tomcat@172.17.0.4:/opt/tomcat/webapps
-                    ssh tomcat@172.17.0.4 '
+                    ssh tomcat@172.17.0.3 'bash -s' < checktomcatstatus.sh
+                    cd /var/jenkins_home/workspace/TestForPipeline/webdemo/build/libs
+                    scp webdemo.war tomcat@172.17.0.3:/opt/tomcat/webapps
+                    ssh tomcat@172.17.0.3 '
                         cd /opt/tomcat/bin
                         ./startup.sh
                     '
